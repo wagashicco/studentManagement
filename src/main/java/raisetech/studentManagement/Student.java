@@ -16,7 +16,7 @@ public class Student {
   private int age;
   private String gender;
 
-  /*　↓　ランボックで自動生成する部分
+  /*　↓　lombok 自動生成する部分
   public int getAge() {
     return age;
   }
