@@ -13,6 +13,11 @@ java {
 		languageVersion = JavaLanguageVersion.of(17)
 	}
 }
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
 
 repositories {
 	mavenCentral()
@@ -22,6 +27,16 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	//便利機能アパッチコモンズを追加  24.12.05
 	implementation 'org.apache.commons:commons-lang3:3.17.0'
+//Lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	//MySQL ドライバ　DBと接続するためのツール　動画と一緒だけど古いかも？？
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	//runtimeOnly 'mysql:mysql-connector-java:8.0.32'←　AIが進めてきたヴァージョン使えない
+	//MyBatis SQLとのデータの互換性を自動的にやりとり出来るツール ※version 3.0.4 エラーになる
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+	//implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
