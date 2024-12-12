@@ -19,7 +19,7 @@ public class StudentService {
     this.repository = repository;
   }
   @GetMapping("/studentList")
-  public List<Student> seachStudentList() {
+  public List<Student> searchStudentList() {
     return repository.search();
   }
 
