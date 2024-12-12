@@ -1,5 +1,5 @@
 package raisetech.studentManagement.controller;
-
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import raisetech.studentManagement.controller.converter.StudentConverter;
 import raisetech.studentManagement.data.Student;
 import raisetech.studentManagement.data.StudentCourses;
+import raisetech.studentManagement.domain.StudentDetail;
 import raisetech.studentManagement.service.StudentService;
 
 @Controller
@@ -39,6 +40,7 @@ public class StudentController {
 
   @GetMapping("/coursesList")
   public List<StudentCourses> searchStudentCoursesList() {
+
     return service.searchStudentCoursesList();
   }
 }

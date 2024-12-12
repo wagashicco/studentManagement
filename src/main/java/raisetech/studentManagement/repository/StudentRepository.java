@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Select;
 import raisetech.studentManagement.data.Student;
 import raisetech.studentManagement.data.StudentCourses;
 
+
 @Mapper
 public interface StudentRepository {
 //DBから情報の取得
