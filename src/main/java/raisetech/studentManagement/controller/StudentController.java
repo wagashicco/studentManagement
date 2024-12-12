@@ -1,5 +1,6 @@
 package raisetech.studentManagement.controller;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,6 +11,7 @@ import raisetech.studentManagement.controller.converter.StudentConverter;
 import raisetech.studentManagement.data.Student;
 import raisetech.studentManagement.data.StudentCourses;
 import raisetech.studentManagement.domain.StudentDetail;
+
 import raisetech.studentManagement.service.StudentService;
 
 @RestController
@@ -36,6 +38,7 @@ public class StudentController {
 
   @GetMapping("/coursesList")
   public List<StudentCourses> searchStudentCoursesList() {
+
     return service.searchStudentCoursesList();
   }
 
