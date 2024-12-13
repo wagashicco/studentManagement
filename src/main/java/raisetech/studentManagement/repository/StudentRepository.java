@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Update;
 import raisetech.studentManagement.data.Student;
 import raisetech.studentManagement.data.StudentCourses;
 
+
 @Mapper
 public interface StudentRepository {
 
