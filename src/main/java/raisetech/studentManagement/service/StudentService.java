@@ -19,17 +19,25 @@ public class StudentService {
 
   @Autowired
   public StudentService (StudentRepository repository) {
-    this.repository = repository;
+        this.repository = repository;
   }
 
-  @GetMapping("/studentList")
+  //@GetMapping("/studentList")
   public List<Student> searchStudentList() {
-    return repository.search();
+        return repository.search();
+  }
+//HTMLから取れたidから　受講生　＋　コース情報　→【受講生情報詳細】として返す。
+  public  StudentDetail searchStudent(String  id){
+    Student student = repository.searchStudent(id);
+   List<StudentsCourses> studentsCourses = repository.searchStudentsCourses(student.getId());
+   StudentDetail studentDetail = new StudentDetail();
+   studentDetail.setStudent(student);
+   studentDetail.setStudentsCourses(studentsCourses);
+   return studentDetail;
   }
 
-  @GetMapping("/coursesList")
   public List<StudentsCourses> searchStudentCoursesList() {
-   return repository.searchCourses();
+   return repository.searchStudentsCoursesList();
   }
   //受講生情報登録 Serviceで登録、削除、更新するものはつける必要がある DBの手前にあるクラスで管理する
   @Transactional
@@ -52,6 +60,14 @@ public class StudentService {
       studentsCourses.setFinishDate(finishDate);
 
       repository.registerStudentsCourses(studentsCourses);
+    }
+  }
+  @Transactional
+  public void  updateStudent(StudentDetail studentDetail){
+    repository.updateStudent(studentDetail.getStudent());
+    for(StudentsCourses studentsCourses:studentDetail.getStudentsCourses()){
+      studentsCourses.setStudentId(studentDetail.getStudent().getId());
+      repository.updateStudentsCourses(studentsCourses);
     }
   }
 }
