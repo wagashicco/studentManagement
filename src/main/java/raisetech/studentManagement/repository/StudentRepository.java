@@ -17,9 +17,15 @@ public interface StudentRepository {
   //DBから情報の取得
   @Select("SELECT * FROM students")
   List<Student> search();
-
   @Select("SELECT * FROM courses")
-  List<StudentsCourses> searchCourses();
+  List<StudentsCourses> searchStudentsCoursesList();
+
+//指定idの生徒情報を取得  コース情報の単体取得
+  @Select("SELECT * FROM students WHERE id = #{id}")
+  Student searchStudent(String id);
+  @Select("SELECT * FROM courses WHERE student_id = #{studentId}")
+  List<StudentsCourses> searchStudentsCourses(String studentId);
+
 
 //受講生の登録
   @Insert("INSERT INTO students(name,furigana,nickname,email,city,age,gender,remarks,is_deleted)"
@@ -33,10 +39,14 @@ public interface StudentRepository {
   @Options(useGeneratedKeys = true,keyProperty = "id")
   void registerStudentsCourses(StudentsCourses studentsCourses);
 
-  @Update("UPDATE student SET age = #{age} WHERE name = #{name}")
-  void updateStudent(String name, int age);
+  //受講生のUPDATE　
+  @Update("UPDATE students SET name = #{name}, furigana = #{furigana}, nickname = #{nickname}, email = #{email}, "
+      + "city = #{city}, age = #{age}, gender = #{gender}, remarks = #{remarks}, is_deleted = #{isDeleted} WHERE id = #{id}")
+  void updateStudent(Student student);
 
-  @Delete("DELETE FROM student WHERE name =#{name}")
-  void deleteStudent(String name);
+  //コースのUPDATE
+  @Update("UPDATE courses SET course_name = #{courseName}"
+      + "WHERE id = #{id}")
+  void updateStudentsCourses(StudentsCourses studentsCourses);
 
 }
