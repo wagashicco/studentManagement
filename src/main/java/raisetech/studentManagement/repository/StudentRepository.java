@@ -14,6 +14,9 @@ import raisetech.studentManagement.data.StudentsCourses;
 @Mapper
 public interface StudentRepository {
 
+  //DELETE　　WHERE is_deleted = falseを条件で指定すると画面で確認できなくなる為、今回は指定しない。
+ // @Select("SELECT * FROM students")
+
   //DBから情報の取得
   @Select("SELECT * FROM students")
   List<Student> search();
