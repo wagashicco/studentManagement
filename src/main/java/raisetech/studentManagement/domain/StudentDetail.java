@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import raisetech.studentManagement.data.Student;
-import raisetech.studentManagement.data.StudentsCourses;
+import raisetech.studentManagement.data.StudentCourse;
 
 @Getter
 @Setter
@@ -14,8 +14,7 @@ import raisetech.studentManagement.data.StudentsCourses;
 @AllArgsConstructor
 public class StudentDetail {
 
-  //HTMLのワードと紐づく
   private Student student;
-  private List<StudentsCourses> studentsCourses;
+  private List<StudentCourse> studentCourseList;
 
 }
