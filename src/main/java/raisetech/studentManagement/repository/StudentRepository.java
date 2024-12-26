@@ -30,6 +30,7 @@ public interface StudentRepository {
    * @param id　受講生ID
    * @return 受講生
    */
+
   Student searchStudent(String id);
 
   /**
