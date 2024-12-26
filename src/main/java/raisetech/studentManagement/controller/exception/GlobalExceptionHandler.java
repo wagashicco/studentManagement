@@ -20,9 +20,11 @@ public class GlobalExceptionHandler {
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
   }
 
+  //Validationによる入力チェックで起きたエラーの詳細を表示する。（オブジェクト名、フィールド名を表示）
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<String> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
-    return new ResponseEntity<>("Validation error: " + e.getBindingResult().getAllErrors().get(0).getDefaultMessage(), HttpStatus.BAD_REQUEST); }
-//TODO:これだけでValidationの入力チェックに対応できるのか検証
+    return new ResponseEntity<>("Validation error: " + e.getBindingResult().getFieldError(),HttpStatus.BAD_REQUEST);
+  } //e.getBindingResult().getAllErrors().get(0).getDefaultMessage(), HttpStatus.BAD_REQUEST); }
+
 
 }
