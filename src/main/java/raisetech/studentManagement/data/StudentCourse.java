@@ -1,11 +1,10 @@
 package raisetech.studentManagement.data;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * 受講生に紐付くコース情報を扱うクラス<br>
@@ -17,9 +16,9 @@ import lombok.Setter;
  *（endDate）       受講終了日<br>
  */
 
-@Schema(description = "受講生コース情報")
 @Getter
 @Setter
+@Validated
 public class StudentCourse {
   /**受講生のもつ一意のID  */
   //新規登録の際はnullになるのが正しい

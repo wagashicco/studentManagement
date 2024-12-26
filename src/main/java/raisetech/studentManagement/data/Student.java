@@ -23,7 +23,6 @@ import org.springframework.validation.annotation.Validated;
  * （remarks）  受講生に関する備考欄 <br>
  * （isDeleted）　受講生のキャンセンルフラグ（論理削除とする）<br>
  */
-@Schema(description = "受講生")
 @Getter
 @Setter
 @Validated

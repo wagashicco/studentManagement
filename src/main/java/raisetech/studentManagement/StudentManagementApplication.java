@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RestController;
 import raisetech.studentManagement.repository.StudentRepository;
 
-@OpenAPIDefinition(info = @Info(title ="受講生管理システム"))
 @SpringBootApplication
 public class StudentManagementApplication {
 
