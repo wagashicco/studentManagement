@@ -10,51 +10,60 @@ import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
 
 /**
- *  受講生を扱うクラス<br>
- * ーーー　フィールド　ーーー<br>
- * （id）   受講生の一意のID<br>
- * （name）     受講生の名前 <br>
- * （furigana） 受講生のフリガナ <br>
- * （nickname）受講生のニックネーム <br>
- * （email） 受講生の email <br>
- * （city）受講生の在住都道府県 <br>
- * （age）受講生の年齢 <br>
- * （gender） 受講生の性別 <br>
- * （remarks）  受講生に関する備考欄 <br>
- * （isDeleted）　受講生のキャンセンルフラグ（論理削除とする）<br>
+ *  受講生を扱うクラス
  */
+@Schema(description = "受講生情報")
 @Getter
 @Setter
 @Validated
 public class Student {
 
   /** 受講生ID　*/
+  @Schema(description = "受講生を識別するための一意のID", example = "1")
   @Pattern(regexp = "\\d+")
   private String id;
+
   /**受講生の名前 */
+  @Schema(description = "フルネーム", example = "小俣恵利佳")
   @NotNull
   private String name;
+
   /**受講生のフリガナ */
+  @Schema(description = "フリガナ", example = "オマタエリカ")
   @NotNull
   private String furigana;
+
   /**受講生のニックネーム */
+  @Schema(description = "ニックネーム", example = "和菓子っこ")
   @NotBlank
   private String nickname;
+
   /**受講生の email */
+  @Schema(description = "メールアドレス", example = "xxx@co.jp")
   @Email
   private String email;
+
+  @Schema(description = "住所", example = "神奈川県")
   /**受講生の在住都道府県 */
   @NotBlank
   private String city;
+
   /**受講生の年齢 */
+  @Schema(description = "年齢", example = "３９")
   @NotNull
   private int age;
+
   /**受講生の性別 */
+  @Schema(description = "性別", example = "女性")
   @NotBlank
   private String gender;
+
   /**受講生に関する備考欄 */
+  @Schema(description = "備考欄", example = "Java Silver資格　勉強中")
   private String remarks;
+
   /**受講生のキャンセンルフラグ（論理削除とする） */
+  @Schema(description = "論理削除", example = "falseかtrue")
   @NotNull
   boolean isDeleted;
 

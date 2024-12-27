@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler(Exception.class)
   public ResponseEntity<String> handleTestException(Exception ex){
-    System.out.println("handleTestExceptionを実行中");
+    System.out.println(ex.getMessage());
     //ログ出力 BAD_REQUESTは送信結果400がでる
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
   }
