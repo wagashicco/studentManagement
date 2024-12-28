@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import raisetech.studentManagement.repository.StudentRepository;
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "受講生管理システム",description = "登録、削除、更新ができます"))
+@OpenAPIDefinition(info = @Info(title = "受講生管理システム",description = "登録、削除、更新、検索ができます"))
 public class StudentManagementApplication {
 
 	@Autowired

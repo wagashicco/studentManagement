@@ -58,7 +58,7 @@ public class StudentController {
    * @param id　受講生ID
    * @return 受講生
    */
-  @Operation(summary = "受講生id検索",description = "IDで受講生の情報を検索します")
+  @Operation(summary = "受講生ID検索",description = "IDで受講生の情報を検索します")
   @GetMapping("/student/{id}")
   public StudentDetail getStudent(@PathVariable @NotBlank @Pattern(regexp = "^\\d+s") String id) {
     return service.searchStudent(id);
@@ -82,7 +82,7 @@ public class StudentController {
    * @param studentDetail 受講生詳細
    * @return 実行結果
    */
-  @Operation(summary = "更新",description = "コース情報も含めた受講生情報を更新")
+  @Operation(summary = "更新",description = "コース情報も含めた受講生情報を更新を行います（キャンセルもここで行う）")
   @PutMapping("/updateStudent")
   public ResponseEntity<String> updateStudent(@RequestBody @Valid StudentDetail studentDetail) {
     service.updateStudent(studentDetail);
