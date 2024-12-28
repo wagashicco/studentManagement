@@ -13,13 +13,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-  @ExceptionHandler(Exception.class)
-  public ResponseEntity<String> handleTestException(Exception ex){
-    System.out.println(ex.getMessage());
-    //ログ出力 BAD_REQUESTは送信結果400がでる
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-  }
-
   //Validationによる入力チェックで起きたエラーの詳細を表示する。（オブジェクト名、フィールド名を表示）
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<String> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {

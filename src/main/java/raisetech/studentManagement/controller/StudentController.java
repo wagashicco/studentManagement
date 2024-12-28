@@ -88,11 +88,4 @@ public class StudentController {
     service.updateStudent(studentDetail);
     return ResponseEntity.ok("更新処理が成功");
   }
-
-  //エラーを強制的に起こします
-  @Operation(summary = "テスト用の強制エラー",description = "検証のためにエラーを強制的に起こす事ができます")
-  @GetMapping("/forcedError")
-  public void forcedError() throws Exception{
-    throw new Exception("エラーを発生させてます");
-  }
 }
