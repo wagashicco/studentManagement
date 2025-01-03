@@ -1,5 +1,6 @@
 package raisetech.studentManagement.data;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -43,8 +44,8 @@ public class Student {
   @Email
   private String email;
 
-  @Schema(description = "住所", example = "神奈川県")
   /**受講生の在住都道府県 */
+  @Schema(description = "住所", example = "神奈川県")
   @NotBlank
   private String city;
 
@@ -64,6 +65,7 @@ public class Student {
 
   /**受講生のキャンセンルフラグ（論理削除とする） */
   @Schema(description = "論理削除", example = "falseかtrue")
+  @JsonProperty("isDeleted")//APIドキュメント等の他ツールと互換維持のため（Deleteになる）
   @NotNull
   boolean isDeleted;
 

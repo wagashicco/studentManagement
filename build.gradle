@@ -54,3 +54,10 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+test {
+	reports {
+		html.required.set(true)
+		html.outputLocation.set(layout.buildDirectory.dir("reports/tests"))
+	}
+}
+
