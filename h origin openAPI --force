@@ -1,0 +1,33 @@
+[33m38a5732[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mopenAPI[m[33m)[m 使用用途が不明な「forcedError」の説明をAPIドキュメントから削除
+[33mb52db3f[m 説明漏れがあったため「検索」を追記
+[33m4bd0c08[m OpenAPIを使ってAPI仕様書を自動生成できるよå­実装
+[33ma72d720[m OpenAPIwo
+[33m4f8985d[m[33m ([m[1;31morigin/Exception-Handling[m[33m)[m OpenAPIの実装がStudentDetailクラスに残っていたため、削除
+[33m03c9054[m OpenAPIの実が一部実装されていた所を削除
+[33mc909596[m Validationによる入力チェックエラーの詳細を表示するように変更
+[33m6f5d8e1[m 例åアノテーションによる¤あのãアノテーションïによる例外処理
+[33me546518[m[33m ([m[1;31morigin/use-MapperXML[m[33m)[m XMLによるマッピングに変更
+[33m21b6551[m[33m ([m[1;31morigin/use-RestAPI-CREATE[m[33m)[m 受講生登録処理のREST化
+[33m795fb4d[m[33m ([m[1;31morigin/use-RestAPI[m[33m)[m Read処理のREST化とPOSTMAN実装による変更
+[33ma33311c[m[33m ([m[1;31morigin/implement-DELETE[m[33m)[m 受講生の論理削除実装
+[33m5013d00[m[33m ([m[1;31morigin/implement-UPDATA[m[33m)[m 項目の変更をUPDATE画面で確認できるように実装
+[33m114b4e7[m[33m ([m[1;31morigin/refactoring-Thymeleaf-by-POST[m[33m)[m MVCに基づくリファクタリング
+[33m6407093[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m Merge pull request #6 from wagashicco/View-of-Thymleaf-by-POST
+[33m4e2ed4b[m Merge branch 'main' into View-of-Thymleaf-by-POST
+[33mc926c53[m[33m ([m[1;31morigin/View-of-Thymleaf-by-POST[m[33m)[m 受講生情報を登録して追加後の受講生一覧を表示
+[33mabd5af4[m Merge pull request #5 from wagashicco/View-of-Thymleaf
+[33m6339a43[m Merge branch 'main' into View-of-Thymleaf
+[33m48070c3[m[33m ([m[1;31morigin/View-of-Thymleaf[m[33m)[m タイムリーフで画面描画の実装
+[33m111fc86[m Merge pull request #4 from wagashicco/impliment-MVC-Converter
+[33m8eeb2de[m Merge branch 'main' into impliment-MVC-Converter
+[33m2998e68[m[33m ([m[1;31morigin/impliment-MVC-Converter[m[33m)[m VIEWに情報を渡しすぎない様にConverterクラスを追加
+[33me6f6af7[m Merge pull request #3 from wagashicco/impliment-MVC
+[33mce57e08[m[33m ([m[1;31morigin/impliment-MVC[m[33m)[m MVCを考慮した設計に修正
+[33m41261ba[m Merge pull request #2 from wagashicco/use-DB
+[33m182dad5[m[33m ([m[1;31morigin/use-DB[m[33m)[m ランボック→lombokに修正
+[33mba50a49[m DBから情報を取徳できるように変更した
+[33m4ad3be6[m Merge pull request #1 from wagashicco/add-apache-commons
+[33mf9538f5[m[33m ([m[1;31morigin/add-apache-commons[m[33m)[m add apache Commons Lang 30
+[33m771fe64[m add apache Commons
+[33me4fab05[m first commit
+[33m660c745[m Initial commit
