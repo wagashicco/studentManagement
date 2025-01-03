@@ -1,12 +1,12 @@
 package raisetech.studentManagement.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -39,7 +39,7 @@ class StudentServiceTest {
   @Test
   void 受講生詳細の一覧検索_リポジトリとコンバーターの処理が適切に呼び出せている事() {
 
-    //事前準備　検証Bで使う
+    //事前準備
     List<Student> studentList = new ArrayList<>();
     List<StudentCourse> studentCourseList = new ArrayList<>();
     when(repository.search()).thenReturn(studentList);
@@ -48,7 +48,7 @@ class StudentServiceTest {
     //実行
     List<StudentDetail> actual = sut.searchStudentList();
     //検証
-    Assertions.assertEquals(expected, actual);
+    assertEquals(expected, actual);
     verify(repository, times(1)).search();
     verify(repository, times(1)).searchStudentCourseList();
     verify(converter, times(1)).convertStudentDetails(studentList, studentCourseList);
@@ -58,6 +58,7 @@ class StudentServiceTest {
   @Test
   void 受講生をIDで検索_repositoryが受講生のID検索とIDに紐付くコース情報を適切に呼出せている事() {
       Student student = new Student();
+      student.setId("16"); // 受講生IDを設定
       List<StudentCourse> courseList = new ArrayList<>();
       StudentDetail expected = new StudentDetail(student, courseList);
 
@@ -67,39 +68,67 @@ class StudentServiceTest {
       //期待される値（返り値）と実行
       StudentDetail actual = sut.searchStudent(student.getId());
       //検証　
-      Assertions.assertEquals(expected, actual);
+      assertEquals(expected, actual);
+      assertEquals(student.getId(), actual.getStudent().getId(), "受講生IDが正しく設定されていません");
+      for (StudentCourse sc : actual.getStudentCourseList()) {
+        assertEquals(student.getId(), sc.getStudentId(), "コース情報に受講生IDが正しく設定されていません");
+      }
       verify(repository, times(1)).searchStudent(student.getId());
       verify(repository, times(1)).searchStudentCourse(student.getId());
     }
 
   // registerStudent　
   @Test
-  void 受講生とコース情報を個別に作成_コース情報の設定で受講生に紐付けること() {
+  void 受講生とコース情報を個別に作成_コース情報の設定で受講生に紐付けることを検証する() {
     Student student = new Student();
+    student.setId("16"); // 受講生IDを設定
     List<StudentCourse> courseList = new ArrayList<>();
     StudentDetail expected = new StudentDetail(student, courseList);
     StudentDetail studentDetail = new StudentDetail(student, courseList);
-
-    doNothing().when(repository).resisterStudent(student);
+    // リポジトリメソッドのスタブ設定
+    doNothing().when(repository).registerStudent(student);
     //期待される値（返り値）と実行
     StudentDetail actual = sut.registerStudent(studentDetail);
-
-    Assertions.assertEquals(expected, actual);
-    verify(repository, times(1)).resisterStudent(student);
+    //期待される値と実際の値の比較
+    assertEquals(expected, actual);
+    //リポジトリメソッドの呼び出し回数の検証
+    verify(repository, times(1)).registerStudent(student);
     verify(repository, times(courseList.size())).registerStudentCourse(any(StudentCourse.class));
-
+    // コース情報に受講生IDが正しく設定されているかを検証
+     for (StudentCourse sc : actual.getStudentCourseList()) {
+       assertEquals(student.getId(), sc.getStudentId(), "コース情報に受講生IDが正しく設定されていません"); }
   }
 
   // updateStudent　のテスト
   @Test
   void 受講生とコース情報の更新_それぞれ更新すること() {
     Student student = new Student();
+    student.setId("16"); // 受講生IDを設定
+    student.setName("小俣恵利佳"); // 旧名を設定
     List<StudentCourse> courseList = new ArrayList<>();
+    StudentCourse course = new StudentCourse();
+    course.setStudentId(student.getId()); // コース情報に受講生IDを設定
+    course.setCourseName("小俣恵利佳"); // 旧コース名を設定
+    courseList.add(course);
     StudentDetail studentDetail = new StudentDetail(student, courseList);
 
+    // 更新後のデータを設定
+    student.setName("更新後の名前"); // 新しい名前を設定
+    course.setCourseName("更新後のコース名"); // 新しいコース名を設定
+
+    // メソッドの実行
     sut.updateStudent(studentDetail);
 
+    // リポジトリメソッドの呼び出し回数の検証
     verify(repository, times(1)).updateStudent(student);
     verify(repository, times(courseList.size())).updateStudentCourse(any(StudentCourse.class));
+
+    // Studentオブジェクトのフィールドが正しく更新されているかを確認
+    assertEquals("更新後の名前", student.getName(), "受講生の名前が正しく更新されていません");
+
+    // StudentCourseオブジェクトのフィールドが正しく更新されているかを確認
+    for (StudentCourse sc : courseList) {
+      assertEquals("更新後のコース名", sc.getCourseName(), "コース名が正しく更新されていません");
+    }
   }
 }
