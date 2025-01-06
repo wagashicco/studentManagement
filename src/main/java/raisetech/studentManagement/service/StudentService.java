@@ -47,6 +47,7 @@ public class StudentService {
    * @return 受講生詳細情報
    */
   public StudentDetail searchStudent(String  id){
+    //repositoryのsearchStudentを呼ぶ。serviceのメソッドではない。
     Student student = repository.searchStudent(id);
    List<StudentCourse> studentCourse = repository.searchStudentCourse(student.getId());
    return new StudentDetail(student, studentCourse);
@@ -62,7 +63,7 @@ public class StudentService {
   public StudentDetail registerStudent(StudentDetail studentDetail) {
     Student student = studentDetail.getStudent();
 
-    repository.resisterStudent(student);
+    repository.registerStudent(student);
     studentDetail.getStudentCourseList().forEach(studentCourse -> {
       initStudentsCourse(studentCourse, student);
       repository.registerStudentCourse(studentCourse);
