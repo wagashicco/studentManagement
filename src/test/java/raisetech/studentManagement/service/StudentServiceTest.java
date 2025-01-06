@@ -108,7 +108,7 @@ class StudentServiceTest {
     List<StudentCourse> courseList = new ArrayList<>();
     StudentCourse course = new StudentCourse();
     course.setStudentId(student.getId()); // コース情報に受講生IDを設定
-    course.setCourseName("小俣恵利佳"); // 旧コース名を設定
+    course.setCourseName("Ｊａｖａコース"); // 旧コース名を設定
     courseList.add(course);
     StudentDetail studentDetail = new StudentDetail(student, courseList);
 
