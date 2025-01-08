@@ -6,7 +6,10 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
 
@@ -16,11 +19,14 @@ import org.springframework.validation.annotation.Validated;
 @Schema(description = "受講生情報")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Validated
 public class Student {
 
   /** 受講生ID　*/
   @Schema(description = "受講生を識別するための一意のID", example = "1")
+  @Setter(AccessLevel.NONE)
   @Pattern(regexp = "\\d+")
   private String id;
 

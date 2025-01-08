@@ -57,9 +57,9 @@ class StudentServiceTest {
   // searchStudent のテスト
   @Test
   void 受講生をIDで検索_repositoryが受講生のID検索とIDに紐付くコース情報を適切に呼出せている事() {
-      Student student = new Student();
-      student.setId("16"); // 受講生IDを設定
-      List<StudentCourse> courseList = new ArrayList<>();
+    Student student = new Student("16","小俣恵利佳","オマタエリカ","和菓子っこ","wagashicco@hotmail.co.jp","神奈川県",40,"female","",false);
+
+    List<StudentCourse> courseList = new ArrayList<>();
       StudentDetail expected = new StudentDetail(student, courseList);
 
       when(repository.searchStudent(student.getId())).thenReturn(student);
@@ -80,8 +80,8 @@ class StudentServiceTest {
   // registerStudent　
   @Test
   void 受講生とコース情報を個別に作成_コース情報の設定で受講生に紐付けることを検証する() {
-    Student student = new Student();
-    student.setId("16"); // 受講生IDを設定
+    Student student = new Student("16","小俣恵利佳","オマタエリカ","和菓子っこ","wagashicco@hotmail.co.jp","神奈川県",39,"female","",false);
+
     List<StudentCourse> courseList = new ArrayList<>();
     StudentDetail expected = new StudentDetail(student, courseList);
     StudentDetail studentDetail = new StudentDetail(student, courseList);
@@ -96,15 +96,15 @@ class StudentServiceTest {
     verify(repository, times(courseList.size())).registerStudentCourse(any(StudentCourse.class));
     // コース情報に受講生IDが正しく設定されているかを検証
      for (StudentCourse sc : actual.getStudentCourseList()) {
-       assertEquals(student.getId(), sc.getStudentId(), "コース情報に受講生IDが正しく設定されていません"); }
+       assertEquals(student.getId(), sc.getStudentId(), "コース情報に受講生IDが正しく設定されていません");
+     }
   }
 
   // updateStudent　のテスト
   @Test
   void 受講生とコース情報の更新_それぞれ更新すること() {
-    Student student = new Student();
-    student.setId("16"); // 受講生IDを設定
-    student.setName("小俣恵利佳"); // 旧名を設定
+    Student student = new Student("16","小俣恵利佳","オマタエリカ","和菓子っこ","wagashicco@hotmail.co.jp","神奈川県",39,"female","",false);
+
     List<StudentCourse> courseList = new ArrayList<>();
     StudentCourse course = new StudentCourse();
     course.setStudentId(student.getId()); // コース情報に受講生IDを設定
